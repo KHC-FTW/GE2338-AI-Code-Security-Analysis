@@ -1,0 +1,27 @@
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<nav style="background-color: #333; color: white; padding: 1rem; margin-bottom: 2rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto;">
+        <div>
+            <a href="home" style="color: white; text-decoration: none; font-weight: bold; font-size: 1.25rem;">MyBlog</a>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <form action="home" method="get" style="display: flex; margin: 0;">
+                <input type="text" name="q" placeholder="Search articles..." value="${searchQuery}" style="padding: 0.25rem;">
+                <button type="submit">Search</button>
+            </form>
+            <a href="home" style="color: white; text-decoration: none;">Home</a>
+            <c:choose>
+                <c:when test="${not empty sessionScope.user}">
+                    <a href="create-article" style="color: white; text-decoration: none;">Create Article</a>
+                    <a href="profile" style="color: white; text-decoration: none;">Profile (${sessionScope.user.username})</a>
+                    <a href="logout" style="color: white; text-decoration: none;">Logout</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="login" style="color: white; text-decoration: none;">Login</a>
+                    <a href="register" style="color: white; text-decoration: none;">Register</a>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
+</nav>
+
